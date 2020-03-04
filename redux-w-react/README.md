@@ -18,3 +18,45 @@ const allReducers = combineReducers({
   logged: isLoggedInReducer
 });
 ```
+
+### use from store
+
+```jsx
+const counter = useSelector(state => state.counterReducer);
+const isLoggedIn = useSelector(state => state.isLoggedInReducer);
+return (
+  <div className='App'>
+    <h1>Counter from state {counter}</h1>
+    <button>+</button>
+    <button>-</button>
+    {isLoggedIn && <span>Hidden Information</span>}
+  </div>
+);
+```
+
+### update state with actions
+
+```js
+// example with input
+export const increment = num => {
+  return {
+    type: 'INCREMENT',
+    payload: num
+  };
+};
+
+export const decrement = () => {
+  return {
+    type: 'DECREMENT'
+  };
+};
+```
+
+### dispatch with actions
+
+```js
+import { increment, decrement } from './actions';
+
+<button onClick={() => dispatch(increment(5))}>+</button>
+<button onClick={() => dispatch(decrement())}>-</button>
+```
