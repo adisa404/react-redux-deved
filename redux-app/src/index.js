@@ -11,11 +11,21 @@ import * as serviceWorker from './serviceWorker';
 // ACTION - ex. 'Increment' - os only a describtion of a process
 // - an action is afunction that returnes an object
 const incremenet = () => {
-  return {};
+  return {
+    type: 'INCREMENT'
+  };
+};
+
+const decrement = () => {
+  return {
+    type: 'DECREMENT'
+  };
 };
 
 // REDUCER - describes how our Actions transform state into the next state
-
+const counter = (state = 0, action) => {
+  //
+};
 // DISPATCH - executes the action
 
 ReactDOM.render(<App />, document.getElementById('root'));
