@@ -18,5 +18,8 @@ export const todos = (state = [], action) => {
       const { text } = payload;
       return state.filter(todo => todo.text !== text);
     }
+
+    default:
+      return state;
   }
 };
