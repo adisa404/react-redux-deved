@@ -1,4 +1,4 @@
-import { CREATE_TODO, REMOVE_TODO } from './actions';
+import { CREATE_TODO, REMOVE_TODO, MARK_AS_COMPLETED } from './actions';
 
 // todos - is going to be in store!!
 export const todos = (state = [], action) => {
@@ -17,6 +17,25 @@ export const todos = (state = [], action) => {
     case REMOVE_TODO: {
       const { text } = payload;
       return state.filter(todo => todo.text !== text);
+    }
+
+    case MARK_AS_COMPLETED: {
+      // const { text } = payload;
+      // return state.map(todo => {
+      //   if (todo.text === text) {
+      //     return { ...todo, isCompleted: true };
+      //   }
+      //   return todo;
+      // });
+
+      // my solution
+      const { todo } = payload;
+      const newState = [...state];
+      const index = newState.indexOf(todo);
+      newState[index].isCompleted = true;
+      console.log('state todos', newState);
+      debugger;
+      return newState;
     }
 
     default:
