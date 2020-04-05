@@ -1,7 +1,12 @@
 import React from 'react';
 import './TodoListItem.css';
 
-const TodoListItem = ({ todo, onRemovePressed, onCompletePressed }) => {
+const TodoListItem = ({
+  todo,
+  onRemovePressed,
+  onCompletePressed,
+  onDisplayAlertClicked
+}) => {
   console.log('render');
   return (
     <div className='todo-item-container'>
@@ -25,6 +30,15 @@ const TodoListItem = ({ todo, onRemovePressed, onCompletePressed }) => {
           }}
         >
           Remove
+        </button>
+
+        <button
+          className='remove-button'
+          onClick={() => {
+            onDisplayAlertClicked();
+          }}
+        >
+          Test Basic Thunk
         </button>
       </div>
     </div>
