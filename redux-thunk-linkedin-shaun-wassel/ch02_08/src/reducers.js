@@ -23,22 +23,24 @@ export const todos = (state = [], action) => {
     }
 
     case MARK_AS_COMPLETED: {
-      // const { text } = payload;
-      // return state.map(todo => {
-      //   if (todo.text === text) {
-      //     return { ...todo, isCompleted: true };
-      //   }
-      //   return todo;
-      // });
+      const { todo: updatedTodo } = payload;
+      debugger;
+      return state.map(todo => {
+        if (todo.id === updatedTodo.id) {
+          return updatedTodo;
+        }
+        return todo;
+      });
 
       // my solution
-      const { todo } = payload;
-      const newState = [...state];
-      const index = newState.indexOf(todo);
-      newState[index].isCompleted = true;
-      console.log('state todos', newState);
-      debugger;
-      return newState;
+      // debugger;
+      // const { id } = payload.todo;
+      // const newState = [...state];
+      // const index = newState.indexOf(todo);
+      // newState[index].isCompleted = true;
+      // console.log('state todos', newState);
+      // debugger;
+      // return newState;
     }
     case LOAD_TODOS_SUCCESS: {
       const { todos } = payload;
