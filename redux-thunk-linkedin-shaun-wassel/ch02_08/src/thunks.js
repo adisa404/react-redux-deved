@@ -1,8 +1,4 @@
-import {
-  loadTodosInProgress,
-  loadTodosSuccess,
-  loadTodosFailure
-} from './actions';
+import { loadTodosInProgress, loadTodosSuccess, loadTodosFailure, createTodo } from './actions';
 
 export const displayAlert = () => () => {
   alert('hello');
@@ -24,6 +20,22 @@ export const loadTodos = () => async (dispatch, getState) => {
     dispatch(loadTodosSuccess(todos));
   } catch (e) {
     dispatch(loadTodosFailure());
+    dispatch(displayAlertWithText(e));
+  }
+};
+
+export const addTodo = text => async (dispatch, getState) => {
+  try {
+    const body = JSON.stringify({ text });
+
+    const response = await fetch('http://localhost:8080/todos', {
+      headers: { 'Content-Type': 'application/json' },
+      method: 'post',
+      body,
+    });
+    const todo = await response.json();
+    dispatch(createTodo(todo));
+  } catch (error) {
     dispatch(displayAlertWithText(e));
   }
 };
