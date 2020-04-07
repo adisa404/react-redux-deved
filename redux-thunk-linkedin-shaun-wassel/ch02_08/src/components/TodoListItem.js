@@ -35,7 +35,7 @@ const TodoListItem = ({
         <button
           className='remove-button'
           onClick={() => {
-            onDisplayAlertClicked();
+            onDisplayAlertClicked('button');
           }}
         >
           Test Basic Thunk

@@ -1,4 +1,11 @@
-import { CREATE_TODO, REMOVE_TODO, MARK_AS_COMPLETED } from './actions';
+import {
+  CREATE_TODO,
+  REMOVE_TODO,
+  MARK_AS_COMPLETED,
+  LOAD_TODOS_IN_PROGRESS,
+  LOAD_TODOS_SUCCESS,
+  LOAD_TODOS_FAILURE,
+} from './actions';
 
 // todos - is going to be in store!!
 export const todos = (state = [], action) => {
@@ -9,7 +16,7 @@ export const todos = (state = [], action) => {
       const { text } = payload;
       const newTodo = {
         text,
-        isCompleted: false
+        isCompleted: false,
       };
       return state.concat(newTodo);
     }
@@ -37,6 +44,27 @@ export const todos = (state = [], action) => {
       debugger;
       return newState;
     }
+    case LOAD_TODOS_SUCCESS: {
+      const { todos } = payload;
+      return todos;
+    }
+
+    case LOAD_TODOS_IN_PROGRESS:
+    case LOAD_TODOS_FAILURE:
+    default:
+      return state;
+  }
+};
+
+export const isLoading = (state = false, action) => {
+  const { type } = action;
+  console.log('action', action);
+  switch (type) {
+    case LOAD_TODOS_IN_PROGRESS:
+      return true;
+    case LOAD_TODOS_SUCCESS:
+    case LOAD_TODOS_FAILURE:
+      return false;
 
     default:
       return state;
